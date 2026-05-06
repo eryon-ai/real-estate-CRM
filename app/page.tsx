@@ -534,6 +534,75 @@ export default function App() {
   const [mediaModalOpen, setMediaModalOpen] = useState(false);
   const [detailModalOpen, setDetailModalOpen] = useState(false);
   const [selectedDetail, setSelectedDetail] = useState<OperationsItem | null>(null);
+  const [categories, setCategories] = useState<string[]>(['Villa', 'Apartment', 'House', 'Commercial']);
+  const [opsData, setOpsData] = useState<Record<string, OperationsItem[]>>({
+    deals: [
+      { id: 'd1', label: 'Oceanview Villa Offer', owner: 'Mike Ross', value: 4200000, status: 'Negotiation', meta: 'Counter-offer sent' },
+      { id: 'd2', label: 'Downtown Loft Renewal', owner: 'Harvey Specter', value: 55000, status: 'Review', meta: 'Lease docs pending' },
+      { id: 'd3', label: 'Austin Home Counter', owner: 'Donna Paulsen', value: 825000, status: 'Active', meta: 'Inspection completed' },
+      { id: 'd4', label: 'Malibu Pre-sale', owner: 'Mike Ross', value: 3100000, status: 'Ready', meta: 'Deposit received' }
+    ],
+    transactions: [
+      { id: 't1', label: 'Escrow Pending', owner: 'Louis Litt', value: 120000, status: 'Active', meta: 'Waiting for bank' },
+      { id: 't2', label: 'Deposit Verified', owner: 'Harvey Specter', value: 45000, status: 'Ready', meta: 'Wire received' },
+      { id: 't3', label: 'Final Invoice', owner: 'Donna Paulsen', value: 8500, status: 'Review', meta: 'Tax calculation' },
+      { id: 't4', label: 'Title Transfer', owner: 'Louis Litt', value: 0, status: 'Ready', meta: 'Scheduled for Friday' }
+    ],
+    commissions: [
+      { id: 'c1', label: 'Harvey May Payout', owner: 'Harvey Specter', value: 45000, status: 'Ready', meta: 'Approved by Finance' },
+      { id: 'c2', label: 'Donna Q2 Bonus', owner: 'Donna Paulsen', value: 12000, status: 'Review', meta: 'Target verification' },
+      { id: 'c3', label: 'Mike Referral Split', owner: 'Mike Ross', value: 3500, status: 'Active', meta: 'Pending closing' },
+      { id: 'c4', label: 'Louis Listing Fee', owner: 'Louis Litt', value: 8500, status: 'Ready', meta: 'Paid' }
+    ],
+    visits: [
+      { id: 'v1', label: 'Sarah Johnson Visit', owner: 'Mike Ross', value: 0, status: 'Ready', meta: '10:30 AM Tomorrow' },
+      { id: 'v2', label: 'David Chen Revisit', owner: 'Harvey Specter', value: 0, status: 'Active', meta: 'Second viewing' },
+      { id: 'v3', label: 'Emily Davis Tour', owner: 'Donna Paulsen', value: 0, status: 'Review', meta: 'Video tour first' },
+      { id: 'v4', label: 'Builder Inspection', owner: 'Louis Litt', value: 0, status: 'Ready', meta: 'Final punchlist' }
+    ],
+    messages: [
+      { id: 'm1', label: 'Buyer Follow-up', owner: 'System', value: 0, status: 'Active', meta: '42 emails sent' },
+      { id: 'm2', label: 'Owner Price Update', owner: 'Harvey Specter', value: 0, status: 'Review', meta: 'Drafting response' },
+      { id: 'm3', label: 'Visit Reminder', owner: 'System', value: 0, status: 'Ready', meta: 'SMS automation' },
+      { id: 'm4', label: 'Agent Broadcast', owner: 'Donna Paulsen', value: 0, status: 'Active', meta: 'Meeting notes' }
+    ],
+    activities: [
+      { id: 'a1', label: 'Morning Call Block', owner: 'Mike Ross', value: 0, status: 'Ready', meta: '15/20 completed' },
+      { id: 'a2', label: 'Pricing Review', owner: 'Harvey Specter', value: 0, status: 'Review', meta: 'Market analysis' },
+      { id: 'a3', label: 'Owner Meeting', owner: 'Donna Paulsen', value: 0, status: 'Active', meta: 'Contract signing' },
+      { id: 'a4', label: 'Lead Qualification', owner: 'Mike Ross', value: 0, status: 'Active', meta: 'New batch incoming' }
+    ],
+    performance: [
+      { id: 'p1', label: 'North Team', owner: 'Harvey Specter', value: 12000000, status: 'Active', meta: '92% of target' },
+      { id: 'p2', label: 'Luxury Segment', owner: 'Donna Paulsen', value: 8500000, status: 'Ready', meta: 'Leading in ROI' },
+      { id: 'p3', label: 'Rental Desk', owner: 'Mike Ross', value: 450000, status: 'Review', meta: 'High volume' },
+      { id: 'p4', label: 'Outbound Team', owner: 'Louis Litt', value: 210000, status: 'Active', meta: 'Lead growth +12%' }
+    ],
+    roles: [
+      { id: 'r1', label: 'Admin Access', owner: 'System', value: 0, status: 'Ready', meta: 'Full access' },
+      { id: 'r2', label: 'Agent Access', owner: 'System', value: 0, status: 'Ready', meta: 'Standard CRM' },
+      { id: 'r3', label: 'Finance Access', owner: 'System', value: 0, status: 'Ready', meta: 'Commissions & Deals' },
+      { id: 'r4', label: 'Media Access', owner: 'System', value: 0, status: 'Ready', meta: 'Library management' }
+    ],
+    sales_reports: [
+      { id: 'sr1', label: 'Monthly Revenue', owner: 'Harvey Specter', value: 0, status: 'Ready', meta: 'Generated May 1st' },
+      { id: 'sr2', label: 'Inventory Velocity', owner: 'Donna Paulsen', value: 0, status: 'Review', meta: 'Q2 Analysis' },
+      { id: 'sr3', label: 'City Sales Mix', owner: 'Mike Ross', value: 0, status: 'Active', meta: 'Real-time data' },
+      { id: 'sr4', label: 'Forecast Accuracy', owner: 'Louis Litt', value: 0, status: 'Ready', meta: '98% confidence' }
+    ],
+    lead_reports: [
+      { id: 'lr1', label: 'Source Quality', owner: 'System', value: 0, status: 'Ready', meta: 'Channel ROI' },
+      { id: 'lr2', label: 'Response SLA', owner: 'Donna Paulsen', value: 0, status: 'Active', meta: 'Avg 14 min' },
+      { id: 'lr3', label: 'Stage Leakage', owner: 'Mike Ross', value: 0, status: 'Review', meta: 'Funnel drop-off' },
+      { id: 'lr4', label: 'Agent Follow-up', owner: 'Louis Litt', value: 0, status: 'Active', meta: 'Call logs' }
+    ],
+    settings: [
+      { id: 's1', label: 'Company Profile', owner: 'Admin', value: 0, status: 'Ready', meta: 'Business details' },
+      { id: 's2', label: 'Notification Rules', owner: 'Admin', value: 0, status: 'Active', meta: 'Internal alerts' },
+      { id: 's3', label: 'Workflow Settings', owner: 'Admin', value: 0, status: 'Review', meta: 'Custom stages' },
+      { id: 's4', label: 'API Integrations', owner: 'Admin', value: 0, status: 'Ready', meta: 'Connected tools' }
+    ]
+  });
 
   // Background scroll lock
   useEffect(() => {
@@ -1152,7 +1221,7 @@ export default function App() {
         <Button icon={Plus} onClick={() => setCategoryModalOpen(true)}>Add Category</Button>
       </div>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
-        {['Villa', 'Apartment', 'House', 'Commercial'].map((category) => {
+        {categories.map((category) => {
           const count = properties.filter((property) => property.type === category).length;
           return (
             <Card key={category} className="p-5">
@@ -1269,82 +1338,27 @@ export default function App() {
     if (activeTab === 'locations') return renderLocations();
     if (activeTab === 'agents') return <div className="max-w-3xl">{renderAgents()}</div>;
     
-    if (activeTab === 'deals') return renderOperationsModule('Deals', 'Offer tracking, negotiation movement, and expected closing value.', [
-      { id: 'd1', label: 'Oceanview Villa Offer', owner: 'Mike Ross', value: 4200000, status: 'Negotiation', meta: 'Counter-offer sent' },
-      { id: 'd2', label: 'Downtown Loft Renewal', owner: 'Harvey Specter', value: 55000, status: 'Review', meta: 'Lease docs pending' },
-      { id: 'd3', label: 'Austin Home Counter', owner: 'Donna Paulsen', value: 825000, status: 'Active', meta: 'Inspection completed' },
-      { id: 'd4', label: 'Malibu Pre-sale', owner: 'Mike Ross', value: 3100000, status: 'Ready', meta: 'Deposit received' }
-    ], 'Add Deal');
+    if (activeTab === 'deals') return renderOperationsModule('Deals', 'Offer tracking, negotiation movement, and expected closing value.', opsData.deals, 'Add Deal');
 
-    if (activeTab === 'transactions') return renderOperationsModule('Transactions', 'Payment milestones, escrow status, and document readiness.', [
-      { id: 't1', label: 'Escrow Pending', owner: 'Louis Litt', value: 120000, status: 'Active', meta: 'Waiting for bank' },
-      { id: 't2', label: 'Deposit Verified', owner: 'Harvey Specter', value: 45000, status: 'Ready', meta: 'Wire received' },
-      { id: 't3', label: 'Final Invoice', owner: 'Donna Paulsen', value: 8500, status: 'Review', meta: 'Tax calculation' },
-      { id: 't4', label: 'Title Transfer', owner: 'Louis Litt', value: 0, status: 'Ready', meta: 'Scheduled for Friday' }
-    ], 'Add Transaction');
+    if (activeTab === 'transactions') return renderOperationsModule('Transactions', 'Payment milestones, escrow status, and document readiness.', opsData.transactions, 'Add Transaction');
 
-    if (activeTab === 'commissions') return renderOperationsModule('Commissions', 'Agent commission slabs, payout progress, and approval status.', [
-      { id: 'c1', label: 'Harvey May Payout', owner: 'Harvey Specter', value: 45000, status: 'Ready', meta: 'Approved by Finance' },
-      { id: 'c2', label: 'Donna Q2 Bonus', owner: 'Donna Paulsen', value: 12000, status: 'Review', meta: 'Target verification' },
-      { id: 'c3', label: 'Mike Referral Split', owner: 'Mike Ross', value: 3500, status: 'Active', meta: 'Pending closing' },
-      { id: 'c4', label: 'Louis Listing Fee', owner: 'Louis Litt', value: 8500, status: 'Ready', meta: 'Paid' }
-    ], 'Add Commission');
+    if (activeTab === 'commissions') return renderOperationsModule('Commissions', 'Agent commission slabs, payout progress, and approval status.', opsData.commissions, 'Add Commission');
 
-    if (activeTab === 'visits') return renderOperationsModule('Site Visits', 'Scheduled visits, property walkthroughs, and field notes.', [
-      { id: 'v1', label: 'Sarah Johnson Visit', owner: 'Mike Ross', value: 0, status: 'Ready', meta: '10:30 AM Tomorrow' },
-      { id: 'v2', label: 'David Chen Revisit', owner: 'Harvey Specter', value: 0, status: 'Active', meta: 'Second viewing' },
-      { id: 'v3', label: 'Emily Davis Tour', owner: 'Donna Paulsen', value: 0, status: 'Review', meta: 'Video tour first' },
-      { id: 'v4', label: 'Builder Inspection', owner: 'Louis Litt', value: 0, status: 'Ready', meta: 'Final punchlist' }
-    ], 'Schedule Visit');
+    if (activeTab === 'visits') return renderOperationsModule('Site Visits', 'Scheduled visits, property walkthroughs, and field notes.', opsData.visits, 'Schedule Visit');
 
-    if (activeTab === 'messages') return renderOperationsModule('Messages', 'Client conversations, outbound campaigns, and response queues.', [
-      { id: 'm1', label: 'Buyer Follow-up', owner: 'System', value: 0, status: 'Active', meta: '42 emails sent' },
-      { id: 'm2', label: 'Owner Price Update', owner: 'Harvey Specter', value: 0, status: 'Review', meta: 'Drafting response' },
-      { id: 'm3', label: 'Visit Reminder', owner: 'System', value: 0, status: 'Ready', meta: 'SMS automation' },
-      { id: 'm4', label: 'Agent Broadcast', owner: 'Donna Paulsen', value: 0, status: 'Active', meta: 'Meeting notes' }
-    ], 'New Message');
+    if (activeTab === 'messages') return renderOperationsModule('Messages', 'Client conversations, outbound campaigns, and response queues.', opsData.messages, 'New Message');
 
-    if (activeTab === 'activities') return renderOperationsModule('Activities', 'Logged calls, meetings, tasks, and team activity timeline.', [
-      { id: 'a1', label: 'Morning Call Block', owner: 'Mike Ross', value: 0, status: 'Ready', meta: '15/20 completed' },
-      { id: 'a2', label: 'Pricing Review', owner: 'Harvey Specter', value: 0, status: 'Review', meta: 'Market analysis' },
-      { id: 'a3', label: 'Owner Meeting', owner: 'Donna Paulsen', value: 0, status: 'Active', meta: 'Contract signing' },
-      { id: 'a4', label: 'Lead Qualification', owner: 'Mike Ross', value: 0, status: 'Active', meta: 'New batch incoming' }
-    ], 'Log Activity');
+    if (activeTab === 'activities') return renderOperationsModule('Activities', 'Logged calls, meetings, tasks, and team activity timeline.', opsData.activities, 'Log Activity');
 
-    if (activeTab === 'performance') return renderOperationsModule('Performance', 'Agent targets, conversion quality, and revenue contribution.', [
-      { id: 'p1', label: 'North Team', owner: 'Harvey Specter', value: 12000000, status: 'Active', meta: '92% of target' },
-      { id: 'p2', label: 'Luxury Segment', owner: 'Donna Paulsen', value: 8500000, status: 'Ready', meta: 'Leading in ROI' },
-      { id: 'p3', label: 'Rental Desk', owner: 'Mike Ross', value: 450000, status: 'Review', meta: 'High volume' },
-      { id: 'p4', label: 'Outbound Team', owner: 'Louis Litt', value: 210000, status: 'Active', meta: 'Lead growth +12%' }
-    ], 'Add Target');
+    if (activeTab === 'performance') return renderOperationsModule('Performance', 'Agent targets, conversion quality, and revenue contribution.', opsData.performance, 'Add Target');
 
-    if (activeTab === 'roles') return renderOperationsModule('Roles & Permissions', 'Access groups, module permissions, and approval levels.', [
-      { id: 'r1', label: 'Admin Access', owner: 'System', value: 0, status: 'Ready', meta: 'Full access' },
-      { id: 'r2', label: 'Agent Access', owner: 'System', value: 0, status: 'Ready', meta: 'Standard CRM' },
-      { id: 'r3', label: 'Finance Access', owner: 'System', value: 0, status: 'Ready', meta: 'Commissions & Deals' },
-      { id: 'r4', label: 'Media Access', owner: 'System', value: 0, status: 'Ready', meta: 'Library management' }
-    ], 'Add Role');
+    if (activeTab === 'roles') return renderOperationsModule('Roles & Permissions', 'Access groups, module permissions, and approval levels.', opsData.roles, 'Add Role');
 
-    if (activeTab === 'sales_reports') return renderOperationsModule('Sales Reports', 'Revenue summaries, closing trend reports, and export-ready metrics.', [
-      { id: 'sr1', label: 'Monthly Revenue', owner: 'Harvey Specter', value: 0, status: 'Ready', meta: 'Generated May 1st' },
-      { id: 'sr2', label: 'Inventory Velocity', owner: 'Donna Paulsen', value: 0, status: 'Review', meta: 'Q2 Analysis' },
-      { id: 'sr3', label: 'City Sales Mix', owner: 'Mike Ross', value: 0, status: 'Active', meta: 'Real-time data' },
-      { id: 'sr4', label: 'Forecast Accuracy', owner: 'Louis Litt', value: 0, status: 'Ready', meta: '98% confidence' }
-    ], 'Create Report');
+    if (activeTab === 'sales_reports') return renderOperationsModule('Sales Reports', 'Revenue summaries, closing trend reports, and export-ready metrics.', opsData.sales_reports, 'Create Report');
 
-    if (activeTab === 'lead_reports') return renderOperationsModule('Lead Reports', 'Lead quality, source attribution, and follow-up performance.', [
-      { id: 'lr1', label: 'Source Quality', owner: 'System', value: 0, status: 'Ready', meta: 'Channel ROI' },
-      { id: 'lr2', label: 'Response SLA', owner: 'Donna Paulsen', value: 0, status: 'Active', meta: 'Avg 14 min' },
-      { id: 'lr3', label: 'Stage Leakage', owner: 'Mike Ross', value: 0, status: 'Review', meta: 'Funnel drop-off' },
-      { id: 'lr4', label: 'Agent Follow-up', owner: 'Louis Litt', value: 0, status: 'Active', meta: 'Call logs' }
-    ], 'Create Report');
+    if (activeTab === 'lead_reports') return renderOperationsModule('Lead Reports', 'Lead quality, source attribution, and follow-up performance.', opsData.lead_reports, 'Create Report');
 
-    return renderOperationsModule('CRM Settings', 'Company profile, team preferences, and system integrations.', [
-      { id: 's1', label: 'Company Profile', owner: 'Admin', value: 0, status: 'Ready', meta: 'Business details' },
-      { id: 's2', label: 'Notification Rules', owner: 'Admin', value: 0, status: 'Active', meta: 'Internal alerts' },
-      { id: 's3', label: 'Workflow Settings', owner: 'Admin', value: 0, status: 'Review', meta: 'Custom stages' },
-      { id: 's4', label: 'API Integrations', owner: 'Admin', value: 0, status: 'Ready', meta: 'Connected tools' }
-    ], 'Save Setting');
+    return renderOperationsModule('CRM Settings', 'Company profile, team preferences, and system integrations.', opsData.settings, 'Save Setting');
   };
 
   return (
@@ -1614,11 +1628,18 @@ export default function App() {
                   </button>
                 </div>
                 <div className="space-y-6 p-6">
-                  <Input label="Category Name" placeholder="e.g. Penthouse" />
+                  <Input id="cat-name" label="Category Name" placeholder="e.g. Penthouse" />
                   <Input label="Description" placeholder="Description of this property type" />
                   <div className="flex gap-2">
                     <Button variant="secondary" className="flex-1" onClick={() => setCategoryModalOpen(false)}>Cancel</Button>
-                    <Button className="flex-1" onClick={() => { notify('Category added'); setCategoryModalOpen(false); }}>Add Category</Button>
+                    <Button className="flex-1" onClick={() => { 
+                      const name = (document.getElementById('cat-name') as HTMLInputElement)?.value;
+                      if (name) {
+                        setCategories(prev => [...prev, name]);
+                        notify('Category added successfully'); 
+                      }
+                      setCategoryModalOpen(false); 
+                    }}>Add Category</Button>
                   </div>
                 </div>
               </motion.div>
