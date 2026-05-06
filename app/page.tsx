@@ -1276,8 +1276,21 @@ export default function App() {
         <div className="flex gap-2">
           <Select value={activeModuleFilter} onChange={(event) => setActiveModuleFilter(event.target.value)} options={[{ value: 'all', label: 'All' }, { value: 'active', label: 'Active' }, { value: 'review', label: 'Review' }]} />
           <Button icon={Plus} onClick={() => {
-            setSelectedDetail({ id: 'new', label: '', owner: 'Admin', value: 0, meta: '', title: `New ${primaryAction}`, row: '', status: 'Ready' });
-            setDetailModalOpen(true);
+            const newItem: OperationsItem = { 
+              id: Math.random().toString(36).substr(2, 9), 
+              label: `New ${primaryAction}`, 
+              owner: 'Admin', 
+              value: 0, 
+              meta: 'Draft created', 
+              title: `New ${primaryAction}`, 
+              row: '', 
+              status: 'Ready' 
+            };
+            setOpsData(prev => ({
+              ...prev,
+              [activeTab]: [newItem, ...(prev[activeTab] || [])]
+            }));
+            notify(`${primaryAction} created successfully`);
           }}>{primaryAction}</Button>
         </div>
       </div>
