@@ -1,0 +1,109 @@
+Act as a Senior Full-Stack Engineer specializing in Next.js 14 (App Router), TypeScript, and PostgreSQL.
+
+I have a fully functional Frontend UI for a "Premium Real Estate CRM" built with React, Tailwind CSS, and Framer Motion. I need you to build the **Backend Infrastructure** and **Data Layer** to support this UI.
+
+## 🎯 GOAL
+Create a robust, type-safe backend using:
+1. **Next.js 14 App Router** (Server Actions for mutations).
+2. **Drizzle ORM** (for schema definition and DB interaction).
+3. **PostgreSQL** (via Neon or Supabase connection string).
+4. **Zod** (for validation).
+5. **Seed Script** (to populate the DB with rich dummy data matching the UI).
+
+## 📂 PROJECT STRUCTURE
+Generate the code for the following files:
+1. `db/schema.ts`: Drizzle schema definitions.
+2. `db/index.ts`: Database client connection.
+3. `lib/actions.ts`: Server Actions for CRUD operations (Properties, Leads, Agents).
+4. `scripts/seed.ts`: A script to populate the database with realistic dummy data.
+5. `app/api/revalidate/route.ts`: Optional revalidation endpoint.
+
+## 🗄️ DATABASE SCHEMA REQUIREMENTS
+
+### 1. Properties Table
+- `id` (varchar, primary key)
+- `title` (varchar)
+- `type` (varchar: 'Villa', 'Apartment', 'House')
+- `listing_type` (varchar: 'sale', 'rent', 'lease')
+- `stage` (varchar: 'ready', 'under_construction', 'resale')
+- `price` (integer)
+- `location` (varchar)
+- `city` (varchar)
+- `size` (integer, sqft)
+- `bedrooms` (integer)
+- `bathrooms` (integer)
+- `status` (varchar: 'Active', 'Pending', 'Sold')
+- `amenities` (jsonb, array of strings)
+- `owner_name` (varchar)
+- `owner_phone` (varchar)
+- `image_url` (varchar)
+- `coordinates` (jsonb: { lat: number, lng: number })
+- `created_at` (timestamp)
+
+### 2. Leads Table
+- `id` (varchar, primary key)
+- `name` (varchar)
+- `phone` (varchar)
+- `email` (varchar)
+- `budget` (integer)
+- `preferred_location` (varchar)
+- `stage` (varchar: 'new', 'contacted', 'qualified', 'visit', 'negotiation', 'closed', 'lost')
+- `agent_id` (varchar, foreign key to Agents)
+- `priority` (varchar: 'High', 'Medium', 'Low')
+- `next_follow_up` (date)
+- `notes` (jsonb, array of { date: string, text: string })
+- `created_at` (timestamp)
+
+### 3. Agents Table
+- `id` (varchar, primary key)
+- `name` (varchar)
+- `email` (varchar)
+- `avatar_url` (varchar)
+- `role` (varchar: 'Admin', 'Agent', 'Manager')
+- `is_active` (boolean)
+- `total_revenue` (integer, default 0)
+- `total_conversions` (integer, default 0)
+
+### 4. Activities/Table (Optional but good for timeline)
+- `id` (varchar)
+- `type` (varchar: 'call', 'email', 'visit', 'note')
+- `description` (varchar)
+- `related_lead_id` (varchar, nullable)
+- `related_property_id` (varchar, nullable)
+- `created_at` (timestamp)
+
+## ⚙️ SERVER ACTIONS (lib/actions.ts)
+
+Implement the following Server Actions with Zod validation:
+1. `getProperties()`: Fetch all properties.
+2. `createProperty(data)`: Insert new property.
+3. `updateProperty(id, data)`: Update existing property.
+4. `deleteProperty(id)`: Delete property.
+5. `getLeads()`: Fetch all leads with agent names joined.
+6. `updateLeadStage(id, stage)`: Update lead status (for drag-and-drop).
+7. `getAgents()`: Fetch all agents.
+
+*Note: Use `revalidatePath('/dashboard')` or specific paths after mutations.*
+
+## 🌱 SEED DATA (scripts/seed.ts)
+
+Create a robust seed script that inserts:
+1. **4-5 High-End Properties**: Use real Unsplash URLs for images. Include diverse types (Villa, Loft, House). Include coordinates for LA, NY, Austin.
+2. **5-6 Leads**: Assign them to different stages (New, Negotiation, Closed). Assign to agents. Include realistic notes.
+3. **4 Agents**: Mike Ross, Harvey Specter, Donna Paulsen, Louis Litt. Use `pravatar.cc` for avatars.
+4. **3-4 Activities**: Recent calls/visits linked to leads.
+
+*Ensure the seed script checks if data already exists to prevent duplicates.*
+
+## 🎨 TECH STACK DETAILS
+- **ORM**: Drizzle ORM (`drizzle-orm`, `postgres`)
+- **Validation**: Zod (`zod`)
+- **DB Driver**: `postgres` (neon-serverless or standard pg)
+- **Styling**: Tailwind CSS (already present in UI)
+
+## 📝 OUTPUT FORMAT
+Provide the full code for each file mentioned above.
+Start with `db/schema.ts`, then `db/index.ts`, then `lib/actions.ts`, then `scripts/seed.ts`.
+Include instructions on how to run the seed script (`npx tsx scripts/seed.ts`).
+
+Make sure the data types in the schema match the UI expectations (e.g., `amenities` as JSONB array, `coordinates` as JSONB object).
