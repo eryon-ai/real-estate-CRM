@@ -56,6 +56,8 @@ interface OperationsItem {
   value: number;
   status: string;
   meta: string;
+  title?: string;
+  row?: string;
 }
 
 type Property = {
@@ -1205,7 +1207,7 @@ export default function App() {
         <div className="flex gap-2">
           <Select value={activeModuleFilter} onChange={(event) => setActiveModuleFilter(event.target.value)} options={[{ value: 'all', label: 'All' }, { value: 'active', label: 'Active' }, { value: 'review', label: 'Review' }]} />
           <Button icon={Plus} onClick={() => {
-            setSelectedDetail({ title: `New ${primaryAction}`, row: '', status: 'Ready' });
+            setSelectedDetail({ id: 'new', label: '', owner: 'Admin', value: 0, meta: '', title: `New ${primaryAction}`, row: '', status: 'Ready' });
             setDetailModalOpen(true);
           }}>{primaryAction}</Button>
         </div>
