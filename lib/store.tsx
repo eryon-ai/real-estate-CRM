@@ -4,7 +4,6 @@
 "use client";
 
 import { createContext, useContext, useState, useEffect, useCallback, type ReactNode } from "react";
-import type { Property } from "./data";
 
 // ─── TYPES ───────────────────────────────────────────────────
 export type Toast = { id: string; message: string; type?: "success" | "info" | "error" };

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
 import Navbar from "@/components/realist/Navbar";
 import Footer from "@/components/realist/Footer";
 import Image from "next/image";

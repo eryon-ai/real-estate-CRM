@@ -6,10 +6,10 @@ import Image from "next/image";
 import Navbar from "@/components/realist/Navbar";
 import Footer from "@/components/realist/Footer";
 import PropertyCard from "@/components/realist/PropertyCard";
-import { AnimatedSection, StaggerContainer, StaggerItem, CountUp, TextReveal, GoldDivider, MagneticHover } from "@/components/realist/AnimatedSection";
+import { AnimatedSection, StaggerContainer, StaggerItem, CountUp, GoldDivider, MagneticHover } from "@/components/realist/AnimatedSection";
 import { properties, journalPosts } from "@/lib/data";
-import { ease, staggerContainer, fadeUp, charContainer, charVariant } from "@/lib/animations";
 import { ArrowRight, CheckCircle2, XCircle, Star, ChevronRight } from "lucide-react";
+import { ease } from "@/lib/animations";
 
 const recentListings = properties.slice(0, 4);
 

@@ -2,7 +2,6 @@
 
 import { useEffect, useState, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import Link from "next/link";
 import { X } from "lucide-react";
 
 export default function ExitIntentPopup() {

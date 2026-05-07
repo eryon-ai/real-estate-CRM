@@ -2,8 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, Search, X, Check, Key, Clock, MapPin } from "lucide-react";
-import { ease } from "@/lib/animations";
+import { ChevronDown, Search, X, Check, Key, MapPin } from "lucide-react";
 
 export type FilterState = {
   status: string;

@@ -5,10 +5,10 @@ import Link from "next/link";
 import Image from "next/image";
 import Navbar from "@/components/realist/Navbar";
 import Footer from "@/components/realist/Footer";
-import { AnimatedSection, GoldDivider } from "@/components/realist/AnimatedSection";
+import { AnimatedSection } from "@/components/realist/AnimatedSection";
 import { useStore } from "@/lib/store";
-import { properties } from "@/lib/data";
-import { ArrowRight, GitCompare, X, Check } from "lucide-react";
+import { properties, type Property } from "@/lib/data";
+import { ArrowRight, GitCompare, X } from "lucide-react";
 import { ease } from "@/lib/animations";
 
 export default function ComparePage() {
@@ -102,13 +102,13 @@ export default function ComparePage() {
               {/* Comparison Rows */}
               <div className="mt-8 border-t border-[#D8D1C2]">
                 {[
-                  { label: "Status", key: "status" },
-                  { label: "Location", key: "location" },
-                  { label: "Bedrooms", key: (p: any) => p.specs.beds },
-                  { label: "Bathrooms", key: (p: any) => p.specs.baths },
-                  { label: "Square Footage", key: (p: any) => `${p.specs.sqft.toLocaleString()} sq ft` },
-                  { label: "Lot Size", key: (p: any) => p.specs.lot },
-                  { label: "Year Built", key: (p: any) => p.specs.year },
+                  { label: "Status", key: "status" as keyof Property },
+                  { label: "Location", key: "location" as keyof Property },
+                  { label: "Bedrooms", key: (p: Property) => p.specs.beds },
+                  { label: "Bathrooms", key: (p: Property) => p.specs.baths },
+                  { label: "Square Footage", key: (p: Property) => `${p.specs.sqft.toLocaleString()} sq ft` },
+                  { label: "Lot Size", key: (p: Property) => p.specs.lot },
+                  { label: "Year Built", key: (p: Property) => p.specs.year },
                 ].map((row, rowIdx) => (
                   <div key={row.label} className="grid grid-cols-4 gap-6 border-b border-[#D8D1C2] py-5 hover:bg-white/[0.01] transition-colors">
                     <div className="col-span-1 flex items-center">
@@ -117,7 +117,7 @@ export default function ComparePage() {
                     {compareList.map((property) => (
                       <div key={property.id} className="col-span-1">
                         <span className="text-sm text-[#1A1A1A]">
-                          {typeof row.key === "function" ? row.key(property) : (property as any)[row.key]}
+                          {typeof row.key === "function" ? row.key(property) : String(property[row.key as keyof Property])}
                         </span>
                       </div>
                     ))}

@@ -8,7 +8,6 @@ import FilterBar from "@/components/realist/FilterBar";
 import PropertyCard from "@/components/realist/PropertyCard";
 import { AnimatedSection } from "@/components/realist/AnimatedSection";
 import { properties } from "@/lib/data";
-import { ease } from "@/lib/animations";
 import type { FilterState } from "@/components/realist/FilterBar";
 
 export default function ExplorePage() {

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import Navbar from "@/components/realist/Navbar";
 import Footer from "@/components/realist/Footer";
@@ -141,7 +142,9 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             {agents.map((agent) => (
               <div key={agent.name} className="glass rounded-[24px] p-6 text-center hover:gold-glow transition-shadow duration-500">
-                <img src={agent.avatar} alt={agent.name} className="w-16 h-16 rounded-full mx-auto mb-4 ring-2 ring-[#D4B06A]/20" />
+                <div className="relative w-16 h-16 rounded-full mx-auto mb-4 ring-2 ring-[#D4B06A]/20 overflow-hidden">
+                  <Image src={agent.avatar} alt={agent.name} fill className="object-cover" />
+                </div>
                 <p className="font-bold text-[#1A1A1A]">{agent.name}</p>
                 <p className="text-[11px] text-[#D4B06A]/50 tracking-widest uppercase mt-1 mb-4">{agent.role}</p>
                 <div className="flex gap-3 justify-center">

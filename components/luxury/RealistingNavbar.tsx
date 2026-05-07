@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import Link from "next/link";
 import { Search } from "lucide-react";
 
@@ -24,7 +23,7 @@ export default function RealistingNavbar() {
         <button className="p-2 hover:bg-black/5 rounded-full transition-colors">
           <Search className="w-5 h-5" />
         </button>
-        <Link href="/admin" className="text-xs font-bold uppercase tracking-widest bg-[#1A1A1A] text-[#1A1A1A] px-6 py-3 rounded-full hover:bg-black transition-all">
+        <Link href="/admin" className="text-xs font-bold uppercase tracking-widest bg-[#1A1A1A] text-[#FFFFFF] px-6 py-3 rounded-full hover:bg-black transition-all">
           LOGIN
         </Link>
       </div>

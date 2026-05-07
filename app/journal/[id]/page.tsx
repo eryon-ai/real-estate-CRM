@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { useParams } from "next/navigation";
@@ -8,7 +7,6 @@ import Navbar from "@/components/realist/Navbar";
 import Footer from "@/components/realist/Footer";
 import { AnimatedSection, GoldDivider } from "@/components/realist/AnimatedSection";
 import { journalPosts } from "@/lib/data";
-import { ease } from "@/lib/animations";
 import { ArrowLeft, Clock, Calendar } from "lucide-react";
 import NotFound from "@/app/not-found";
 
@@ -64,7 +62,7 @@ export default function JournalPostPage() {
           <h2 className="text-2xl font-serif font-bold text-[#1A1A1A] mt-12 mb-6">Architectural Innovation</h2>
           
           <p className="mb-6">
-            Contemporary luxury homes are pushing the boundaries of architectural design. We're observing a departure from traditional, compartmentalized layouts in favor of expansive, open-concept spaces that prioritize natural light and fluid movement. Floor-to-ceiling glass walls that retract to merge indoor and outdoor living areas are no longer just a luxury feature; they are becoming an expected standard in high-end properties.
+            Contemporary luxury homes are pushing the boundaries of architectural design. We&apos;re observing a departure from traditional, compartmentalized layouts in favor of expansive, open-concept spaces that prioritize natural light and fluid movement. Floor-to-ceiling glass walls that retract to merge indoor and outdoor living areas are no longer just a luxury feature; they are becoming an expected standard in high-end properties.
           </p>
 
           <div className="relative aspect-[16/9] w-full my-12 rounded-[24px] overflow-hidden">
@@ -74,7 +72,7 @@ export default function JournalPostPage() {
           <h2 className="text-2xl font-serif font-bold text-[#1A1A1A] mt-12 mb-6">Sustainable Luxury</h2>
           
           <p className="mb-6">
-            Sustainability is no longer at odds with luxury. Discerning buyers now demand eco-friendly features integrated flawlessly into the design. This includes advanced solar power systems that are architecturally invisible, smart climate control systems that learn the occupants' preferences, and the use of sustainably sourced, rare materials that offer both unique aesthetics and environmental consciousness.
+            Sustainability is no longer at odds with luxury. Discerning buyers now demand eco-friendly features integrated flawlessly into the design. This includes advanced solar power systems that are architecturally invisible, smart climate control systems that learn the occupants&apos; preferences, and the use of sustainably sourced, rare materials that offer both unique aesthetics and environmental consciousness.
           </p>
           
           <p className="mb-6">

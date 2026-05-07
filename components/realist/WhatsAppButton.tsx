@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { MessageCircle, X } from "lucide-react";
+import { MessageCircle } from "lucide-react";
 import { useState } from "react";
 
 const WHATSAPP_NUMBER = "919999999999"; // Replace with real number

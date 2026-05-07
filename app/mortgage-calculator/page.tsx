@@ -4,7 +4,7 @@ import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import Navbar from "@/components/realist/Navbar";
 import Footer from "@/components/realist/Footer";
-import { AnimatedSection, CountUp } from "@/components/realist/AnimatedSection";
+import { AnimatedSection } from "@/components/realist/AnimatedSection";
 import { ease } from "@/lib/animations";
 
 export default function MortgageCalculatorPage() {
