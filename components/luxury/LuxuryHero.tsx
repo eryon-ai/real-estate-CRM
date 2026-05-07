@@ -29,11 +29,11 @@ export default function LuxuryHero() {
           <span className="inline-block text-amber-500 font-light tracking-[0.3em] uppercase text-xs mb-6">
             Bespoke Architectural Excellence
           </span>
-          <h1 className="text-5xl md:text-8xl font-serif font-medium text-white mb-8 tracking-tight leading-[1.1]">
+          <h1 className="text-5xl md:text-8xl font-serif font-medium text-[#1A1A1A] mb-8 tracking-tight leading-[1.1]">
             The Art of <br />
             <span className="italic font-light">Elevated Living</span>
           </h1>
-          <p className="text-white/60 font-light text-lg md:text-xl max-w-2xl mx-auto mb-12 leading-relaxed">
+          <p className="text-[#6F6A62] font-light text-lg md:text-xl max-w-2xl mx-auto mb-12 leading-relaxed">
             Curated private estates and architectural masterpieces designed for those who demand the extraordinary.
           </p>
           
@@ -50,7 +50,7 @@ export default function LuxuryHero() {
         transition={{ delay: 2, duration: 1 }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-4"
       >
-        <span className="text-[10px] uppercase tracking-[0.2em] text-white/40 rotate-180 [writing-mode:vertical-lr]">Scroll</span>
+        <span className="text-[10px] uppercase tracking-[0.2em] text-[#6F6A62] rotate-180 [writing-mode:vertical-lr]">Scroll</span>
         <div className="w-[1px] h-12 bg-gradient-to-b from-white/40 to-transparent" />
       </motion.div>
     </section>

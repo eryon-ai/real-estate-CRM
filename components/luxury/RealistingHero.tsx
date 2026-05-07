@@ -24,7 +24,7 @@ export default function RealistingHero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5, duration: 1 }}
-          className="text-lg md:text-xl font-medium max-w-xl mx-auto text-black/60 leading-relaxed mb-12"
+          className="text-lg md:text-xl font-medium max-w-xl mx-auto text-[#FFFFFF]/60 leading-relaxed mb-12"
         >
           Discover curated properties and architectural masterpieces that define the modern landscape.
         </motion.p>

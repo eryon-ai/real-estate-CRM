@@ -2,26 +2,99 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ─── WARM DARK LUXURY DESIGN SYSTEM ────────────────────────── */
+
 @layer base {
+  :root {
+    --gold: #D4B06A;
+    --gold-bright: #B7C58E;
+    --gold-dim: #B7C58E;
+    --dark-bg: #F4F1E8;
+    --dark-surface: #ECE7DC;
+    --dark-elevated: #22201A;
+    --dark-border: rgba(0,0,0,0.04);
+    --text-primary: #1A1A1A;
+    --text-secondary: rgba(242, 237, 228, 0.55);
+    --text-muted: rgba(242, 237, 228, 0.3);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
   body {
-    @apply bg-[#F2F0E6] text-[#1A1A1A] antialiased selection:bg-[#1A1A1A] selection:text-[#F2F0E6];
+    @apply antialiased;
+    background-color: #F4F1E8;
+    color: #1A1A1A;
     font-family: var(--font-inter), system-ui, sans-serif;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1, h2, h3, h4 {
+    font-family: var(--font-playfair), Georgia, serif;
     @apply tracking-tight font-bold;
+  }
+
+  ::selection {
+    background: rgba(200, 169, 107, 0.35);
+    color: #1A1A1A;
   }
 }
 
+/* ─── UTILITY CLASSES ────────────────────────────────────────── */
+
 @layer utilities {
-  .grid-overlay {
-    background-image: linear-gradient(to right, rgba(0,0,0,0.05) 1px, transparent 1px),
-                      linear-gradient(to bottom, rgba(0,0,0,0.05) 1px, transparent 1px);
-    background-size: 40px 40px;
+  /* Gold gradient text */
+  .text-gold-gradient {
+    background: linear-gradient(135deg, #D4B06A, #B7C58E, #D4B06A);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
-  .glass-card {
-    @apply bg-white/50 backdrop-blur-md border border-white/20;
+  /* Glassmorphism card — warmer tint */
+  .glass {
+    background: rgba(0,0,0,0.04);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(0,0,0,0.04);
+  }
+
+  .glass-strong {
+    background: rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    border: 1px solid rgba(0,0,0,0.06);
+  }
+
+  /* Gold border glow */
+  .gold-glow {
+    box-shadow: 0 0 30px rgba(200, 169, 107, 0.12),
+                0 4px 24px rgba(0, 0, 0, 0.3);
+  }
+
+  .gold-glow-strong {
+    box-shadow: 0 0 50px rgba(200, 169, 107, 0.2),
+                0 8px 40px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Premium shadow */
+  .shadow-luxury {
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4),
+                0 2px 10px rgba(0, 0, 0, 0.25);
+  }
+
+  /* Grid overlay */
+  .grid-overlay {
+    background-image: linear-gradient(to right, rgba(255, 255, 255,0.025) 1px, transparent 1px),
+                      linear-gradient(to bottom, rgba(255, 255, 255,0.025) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  /* Gold divider */
+  .border-gold {
+    border-bottom: 1px solid rgba(200, 169, 107, 0.2);
   }
 
   .rounded-luxury {
@@ -29,11 +102,49 @@
   }
 }
 
+/* ─── SCROLLBAR ──────────────────────────────────────────────── */
+
 .custom-scrollbar::-webkit-scrollbar {
-  width: 6px;
+  width: 4px;
+  height: 4px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: #1A1A1A20;
+  background: rgba(200, 169, 107, 0.25);
   border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* ─── ANIMATIONS ─────────────────────────────────────────────── */
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(200, 169, 107, 0.08), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite linear;
+}
+
+.animate-float {
+  animation: float 7s ease-in-out infinite;
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 3s ease-in-out infinite;
 }

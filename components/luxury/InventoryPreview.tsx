@@ -26,7 +26,7 @@ const previewProperties = [
 
 export default function InventoryPreview() {
   return (
-    <section id="inventory" className="py-32 px-8 bg-black text-white">
+    <section id="inventory" className="py-32 px-8 bg-black text-[#1A1A1A]">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
           <motion.div
@@ -60,7 +60,7 @@ export default function InventoryPreview() {
               transition={{ delay: i * 0.2, duration: 1 }}
               className="group cursor-pointer"
             >
-              <div className="relative aspect-[3/4] overflow-hidden mb-6">
+              <div className="relative aspect-[3/2] rounded-[32px] overflow-hidden mb-6">
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500 z-10" />
                 <Image 
                   src={prop.image} 
@@ -70,9 +70,9 @@ export default function InventoryPreview() {
                 />
               </div>
               <h3 className="text-xl font-serif font-light mb-1">{prop.title}</h3>
-              <div className="flex justify-between items-center text-white/40 text-xs uppercase tracking-widest">
+              <div className="flex justify-between items-center text-[#6F6A62] text-xs uppercase tracking-widest">
                 <span>{prop.location}</span>
-                <span className="text-white font-medium">{prop.price}</span>
+                <span className="text-[#1A1A1A] font-medium">{prop.price}</span>
               </div>
             </motion.div>
           ))}

@@ -19,8 +19,8 @@ export default function FloatingStats() {
           transition={{ delay: 1 + (i * 0.2), duration: 0.8 }}
           className="flex flex-col items-end border-r border-white/20 pr-6"
         >
-          <span className="text-2xl font-serif font-light text-white">{stat.value}</span>
-          <span className="text-[10px] uppercase tracking-widest text-white/40 font-light mt-1">{stat.label}</span>
+          <span className="text-2xl font-serif font-light text-[#1A1A1A]">{stat.value}</span>
+          <span className="text-[10px] uppercase tracking-widest text-[#6F6A62] font-light mt-1">{stat.label}</span>
         </motion.div>
       ))}
     </div>

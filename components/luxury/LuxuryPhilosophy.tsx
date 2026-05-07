@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function LuxuryPhilosophy() {
   return (
-    <section className="py-40 bg-white text-black overflow-hidden">
+    <section className="py-40 bg-white text-[#FFFFFF] overflow-hidden">
       <div className="max-w-5xl mx-auto px-8">
         <motion.div
           initial={{ opacity: 0 }}

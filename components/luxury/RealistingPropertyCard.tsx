@@ -37,12 +37,12 @@ export default function RealistingPropertyCard({ title, price, location, image, 
       <div className="flex justify-between items-start mb-2 px-2">
         <div>
           <h3 className="text-xl font-bold tracking-tight mb-1">{title}</h3>
-          <p className="flex items-center gap-1.5 text-xs font-bold text-black/40 uppercase tracking-widest">
+          <p className="flex items-center gap-1.5 text-xs font-bold text-[#FFFFFF]/40 uppercase tracking-widest">
             <MapPin className="w-3 h-3" />
             {location}
           </p>
         </div>
-        <p className="text-lg font-bold text-black">{price}</p>
+        <p className="text-lg font-bold text-[#FFFFFF]">{price}</p>
       </div>
     </motion.div>
   );
