@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import CTAButtons from "./CTAButtons";
 import FloatingStats from "./FloatingStats";
 
@@ -10,10 +11,12 @@ export default function LuxuryHero() {
       {/* Background Video/Image Placeholder */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black z-10" />
-        <img 
+        <Image 
           src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&q=80&w=1500" 
           alt="Luxury Estate"
+          fill
           className="w-full h-full object-cover scale-105"
+          priority
         />
       </div>
 
