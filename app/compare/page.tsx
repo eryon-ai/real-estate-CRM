@@ -107,8 +107,7 @@ export default function ComparePage() {
                   { label: "Bedrooms", key: (p: Property) => p.specs.beds },
                   { label: "Bathrooms", key: (p: Property) => p.specs.baths },
                   { label: "Square Footage", key: (p: Property) => `${p.specs.sqft.toLocaleString()} sq ft` },
-                  { label: "Lot Size", key: (p: Property) => p.specs.lot },
-                  { label: "Year Built", key: (p: Property) => p.specs.year },
+                  { label: "Year Built", key: (p: Property) => p.specs.built },
                 ].map((row, rowIdx) => (
                   <div key={row.label} className="grid grid-cols-4 gap-6 border-b border-[#D8D1C2] py-5 hover:bg-white/[0.01] transition-colors">
                     <div className="col-span-1 flex items-center">

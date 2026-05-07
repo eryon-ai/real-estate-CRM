@@ -48,7 +48,7 @@ export default function FilterBar({ onFilterChange }: FilterBarProps) {
           <Key className="w-3.5 h-3.5 text-[#6F6A62]" />
           <p className="text-[10px] font-bold tracking-[0.15em] text-[#6F6A62] uppercase">Listing Type</p>
         </div>
-        <FilterDropdown value={filters.status} options={statusOptions} onChange={(v) => update("status", v)} />
+        <FilterDropdown label="Status" value={filters.status} options={statusOptions} onChange={(v) => update("status", v)} />
       </div>
 
       {/* Neighborhood */}
@@ -57,7 +57,7 @@ export default function FilterBar({ onFilterChange }: FilterBarProps) {
           <MapPin className="w-3.5 h-3.5 text-[#6F6A62]" />
           <p className="text-[10px] font-bold tracking-[0.15em] text-[#6F6A62] uppercase">Neighborhood</p>
         </div>
-        <FilterDropdown value={filters.neighborhood} options={neighborhoodOptions} onChange={(v) => update("neighborhood", v)} />
+        <FilterDropdown label="Neighborhood" value={filters.neighborhood} options={neighborhoodOptions} onChange={(v) => update("neighborhood", v)} />
       </div>
 
       {/* Search */}
