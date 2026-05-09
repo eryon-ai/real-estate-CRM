@@ -109,7 +109,7 @@ export default function HomePage() {
               hidden: {},
               show: { transition: { staggerChildren: 0.2, delayChildren: 0.3 } }
             }}
-            className="mb-12 flex flex-col"
+            className="mb-12 flex flex-col items-start"
           >
             {heroWords.map((word, wi) => (
               <motion.div 
@@ -118,11 +118,13 @@ export default function HomePage() {
                   hidden: { opacity: 0, x: -100, filter: "blur(10px)" },
                   show: { opacity: 1, x: 0, filter: "blur(0px)", transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } }
                 }}
-                className="overflow-hidden"
-                style={{ marginLeft: `${wi * 12}vw` }}
+                className="overflow-hidden w-full"
+                style={{ 
+                  paddingLeft: `${wi * 4}vw`,
+                }}
               >
                 <h1
-                  className="text-[18vw] md:text-[10rem] lg:text-[13rem] font-serif font-bold leading-[0.85] tracking-tighter text-[#1A1A1A] drop-shadow-sm mix-blend-multiply"
+                  className="text-[22vw] md:text-[10rem] lg:text-[13rem] font-serif font-bold leading-[0.85] tracking-tighter text-[#1A1A1A] drop-shadow-sm mix-blend-multiply"
                 >
                   {word}
                 </h1>
@@ -369,7 +371,7 @@ export default function HomePage() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.15, duration: 0.7, ease: ease.apple }}
-              className="min-w-[340px] max-w-[380px] glass rounded-[24px] p-8 flex flex-col gap-6 hover:gold-glow transition-shadow duration-500"
+              className="min-w-[280px] sm:min-w-[340px] max-w-[380px] glass rounded-[24px] p-8 flex flex-col gap-6 hover:gold-glow transition-shadow duration-500"
             >
               <div className="flex gap-1">
                 {Array.from({ length: review.rating }).map((_, j) => (

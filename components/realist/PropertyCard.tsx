@@ -92,7 +92,7 @@ export default function PropertyCard({ property, index = 0 }: { property: Proper
       </Link>
 
       {/* Action buttons — absolute so they don't interfere with link */}
-      <div className="absolute top-[calc(40%-60px)] right-8 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" style={{ top: "calc(56% - 100px)" }}>
+      <div className="absolute top-[calc(40%-60px)] right-8 flex flex-col gap-2 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 z-10" style={{ top: "calc(56% - 100px)" }}>
         <motion.button
           whileTap={{ scale: 0.85 }}
           onClick={(e) => { e.preventDefault(); toggleSaved(property.id, property.title); }}

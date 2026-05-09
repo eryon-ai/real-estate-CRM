@@ -28,9 +28,14 @@ export default function ComparePage() {
             <h1 className="text-5xl md:text-7xl font-serif font-bold tracking-tighter">
               Compare <span className="italic text-[#D4B06A]">Properties</span>
             </h1>
-            <p className="text-sm font-bold text-[#6F6A62] mb-2">
-              {compareList.length} of 3 selected
-            </p>
+            <div className="flex flex-col items-end">
+              <p className="text-sm font-bold text-[#6F6A62] mb-2">
+                {compareList.length} of 3 selected
+              </p>
+              <p className="md:hidden text-[9px] font-bold tracking-widest text-[#D4B06A]/60 uppercase flex items-center gap-2">
+                Scroll right to compare <ArrowRight className="w-3 h-3" />
+              </p>
+            </div>
           </div>
         </AnimatedSection>
 
