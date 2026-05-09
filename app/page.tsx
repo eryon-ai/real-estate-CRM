@@ -53,8 +53,22 @@ export default function HomePage() {
         <div className="absolute top-[-20%] right-[-10%] w-[60vw] h-[60vw] bg-[#D4B06A]/[0.03] rounded-full blur-[150px] pointer-events-none" />
         <div className="absolute bottom-[-30%] left-[-20%] w-[50vw] h-[50vw] bg-[#D4B06A]/[0.02] rounded-full blur-[120px] pointer-events-none" />
 
-        {/* Floating property images — gallery mosaic */}
-        <div className="absolute top-24 right-0 w-[55vw] max-w-[700px] h-[80vh] hidden lg:block pointer-events-none">
+        {/* Background Video */}
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <video
+            autoPlay
+            muted
+            playsInline
+            className="absolute top-0 left-0 w-full h-full object-cover"
+          >
+            <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260503_144509_89e2d612-8af2-45c3-90f4-4831bc60715d.mp4" type="video/mp4" />
+          </video>
+          {/* Only bottom gradient for smooth transition */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#F4F1E8] via-transparent to-transparent z-1" />
+        </div>
+
+        {/* Floating property images — gallery mosaic overlapping the video */}
+        <div className="absolute top-24 right-0 w-[55vw] max-w-[700px] h-[80vh] hidden lg:block pointer-events-none z-10">
           <motion.div
             initial={{ opacity: 0, scale: 0.9, y: 40 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -91,7 +105,7 @@ export default function HomePage() {
         </div>
 
         {/* Hero Text */}
-        <div className="relative z-0 max-w-screen-xl">
+        <div className="relative z-10 max-w-screen-xl">
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -101,32 +115,44 @@ export default function HomePage() {
             Est. 2018 · Ultra-Premium Real Estate
           </motion.p>
 
-          {/* Staggered diagonal hero text */}
+          {/* Staggered diagonal hero text — FANCY REDESIGN */}
           <motion.div
             initial="hidden"
             animate="show"
             variants={{
               hidden: {},
-              show: { transition: { staggerChildren: 0.2, delayChildren: 0.3 } }
+              show: { transition: { staggerChildren: 0.3, delayChildren: 0.5 } }
             }}
-            className="mb-12 flex flex-col items-start"
+            className="mb-12 flex flex-col items-start w-full relative z-20"
           >
-            {heroWords.map((word, wi) => (
+            {[
+              { text: "buy", italic: false, outline: false, shift: 0 },
+              { text: "sell", italic: true, outline: true, shift: 8 },
+              { text: "rent", italic: false, outline: false, shift: 16 },
+            ].map((word, wi) => (
               <motion.div 
-                key={word} 
+                key={word.text} 
                 variants={{
-                  hidden: { opacity: 0, x: -100, filter: "blur(10px)" },
-                  show: { opacity: 1, x: 0, filter: "blur(0px)", transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } }
+                  hidden: { opacity: 0, x: -50, filter: "blur(20px)" },
+                  show: { opacity: 1, x: 0, filter: "blur(0px)", transition: { duration: 1.5, ease: [0.16, 1, 0.3, 1] } }
                 }}
-                className="overflow-hidden w-full"
+                className="overflow-visible w-full flex items-baseline"
                 style={{ 
-                  paddingLeft: `${wi * 4}vw`,
+                  paddingLeft: `${word.shift}vw`,
                 }}
               >
                 <h1
-                  className="text-[22vw] md:text-[10rem] lg:text-[13rem] font-serif font-bold leading-[0.85] tracking-tighter text-[#1A1A1A] drop-shadow-sm mix-blend-multiply"
+                  className={`text-[20vw] md:text-[11rem] lg:text-[14rem] font-serif font-bold leading-[0.8] tracking-tighter drop-shadow-2xl flex items-baseline select-none ${
+                    word.italic ? "italic pr-4" : ""
+                  }`}
+                  style={{
+                    color: word.outline ? 'transparent' : '#1A1A1A',
+                    WebkitTextStroke: word.outline ? '1.5px #1A1A1A' : 'none',
+                    mixBlendMode: 'multiply'
+                  }}
                 >
-                  {word}
+                  {word.text}
+                  <span className="text-[#D4B06A] italic not-italic inline-block ml-[0.02em] leading-none">.</span>
                 </h1>
               </motion.div>
             ))}
